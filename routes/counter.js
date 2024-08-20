@@ -5,16 +5,18 @@ const getBookCounter = require('../functions/getBookCounter');
 
 router.post('/counter/:bookId/incr', (req, res) => {
     const bookId = req.params.bookId;
-    incrCounter(Number(bookId));
+    incrCounter(bookId);
+    const targetCounter = getBookCounter(bookId);
     res.status(201);
-    res.json({'status': 'ok post'});
+    res.json({'counter': targetCounter});
 });
 
 router.get('/counter/:bookId', (req, res) => {
     const bookId = req.params.bookId;
-    const targetCounter = getBookCounter(Number(bookId));
+    const targetCounter = getBookCounter(bookId);
+    incrCounter(bookId);
     res.status(200);
-    res.json({'status': targetCounter});
+    res.json({'counter': targetCounter});
 });
 
 
