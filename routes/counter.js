@@ -13,8 +13,9 @@ router.post('/counter/:bookId/incr', (req, res) => {
 
 router.get('/counter/:bookId', (req, res) => {
     const bookId = req.params.bookId;
-    const targetCounter = getBookCounter(bookId);
     incrCounter(bookId);
+    const targetCounter = getBookCounter(bookId);
+
     res.status(200);
     res.json({'counter': targetCounter});
 });
